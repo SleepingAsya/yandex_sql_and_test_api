@@ -2,11 +2,12 @@
 
 ```sql
 -- Задание 1
-SELECT c.login, 
-COUNT(o."inDelivery") 
+SELECT c.login, COUNT(o.track)
 FROM "Couriers" AS c
-LEFT OUTER JOIN "Orders" AS o ON c.id = o."courierId"
+FULL OUTER JOIN "Orders" AS o ON c.id = o."courierId"
 WHERE o."inDelivery" = true
+OR o."inDelivery" IS NULL
+OR c.login IS NULL
 GROUP BY c.login;
 
 -- Задание 2
